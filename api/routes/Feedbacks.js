@@ -8,6 +8,7 @@ const Feedback = require('../models/Feedback');
 //get all feedback
 router.get('/', (req, res, next)=> {
     Feedback.find()
+    .sort({timestamp : 'desc'})
     .exec()
     .then(docs => {
         console.log(docs);
