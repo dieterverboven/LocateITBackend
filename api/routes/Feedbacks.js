@@ -53,7 +53,7 @@ router.post('/', (req, res, next)=> {
     })
     .catch(err => console.log(err));
     res.status(201).json({
-        message: 'Bezig',
+        message: 'Klaar',
         aangemaakteFeedback: feedback
     })
 });
