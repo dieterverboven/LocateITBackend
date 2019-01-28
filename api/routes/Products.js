@@ -39,7 +39,7 @@ router.get('/:productId', (req, res, next)=> {
 });
 
 // get products by afdeling
-router.get('/:afdeling', (req, res, next)=> {
+router.get('/afdeling/:afdeling', (req, res, next)=> {
     const afdeling = req.params.afdeling;
     Product.find({afdeling : afdeling})
     .exec()
