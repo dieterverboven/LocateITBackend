@@ -5,4 +5,4 @@ var afdelingSchema = mongoose.Schema({
     naam: String,
 })
 
-module.exports = mongoose.model('Afdeling', feedbackSchema);
+module.exports = mongoose.model('Afdeling', afdelingSchema);
