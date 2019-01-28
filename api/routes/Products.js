@@ -38,6 +38,23 @@ router.get('/:productId', (req, res, next)=> {
     });
 });
 
+// get product by afdeling
+router.get('/:afdeling', (req, res, next)=> {
+    const afdeling = req.params.afdeling;
+    Product.find({afdeling : afdeling})
+    .exec()
+    .then(doc => {
+        console.log(doc);
+        res.status(200).json(doc);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        })
+    });
+});
+
 // add product
 router.post('/', (req, res, next)=> {
     const product = new Product({
