@@ -38,7 +38,7 @@ router.get('/:productId', (req, res, next)=> {
     });
 });
 
-// get product by afdeling
+// get products by afdeling
 router.get('/:afdeling', (req, res, next)=> {
     const afdeling = req.params.afdeling;
     Product.find({afdeling : afdeling})
