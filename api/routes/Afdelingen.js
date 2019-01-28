@@ -24,7 +24,7 @@ router.get('/', (req, res, next)=> {
 router.post('/', (req, res, next)=> {
     const afdeling = new Afdeling({
         _id: new mongoose.Types.ObjectId(),
-        naam: String
+        naam: req.body.score
     });
     afdeling
     .save()
