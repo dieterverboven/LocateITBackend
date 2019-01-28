@@ -5,6 +5,7 @@ var productSchema = mongoose.Schema({
     naam: String,
     beschrijving: String,
     afdeling: String,
+    afbeelding: String,
     prijs: Number
 })
 
