@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use('/Feedback', feedbackRoutes);
 app.use('/Products', productRoutes);
 app.use('/Afdelingen', afdelingRoutes);
-app.use('/Stocks', afdelingRoutes);
+app.use('/Stocks', stocksRoutes);
 
 app.get('/', (req, res)=> {
    res.send('Hello World');
