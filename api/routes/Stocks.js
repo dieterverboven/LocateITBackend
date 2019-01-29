@@ -9,7 +9,7 @@ router.get('/', (req, res, next)=> {
     Stock.findOne({}, 
         {}, 
         { 
-            sort: { 'created_at' : -1 } 
+            sort: { 'timestamp' : -1 } 
         }, 
         function(err, post) {
             console.log( post );
