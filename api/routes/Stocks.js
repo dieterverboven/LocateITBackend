@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const Afdeling = require('../models/Stock');
+const Stock = require('../models/Stock');
 
 //get lastest stock
 router.get('/', (req, res, next)=> {
