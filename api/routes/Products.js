@@ -62,7 +62,8 @@ router.post('/', (req, res, next)=> {
         naam: req.body.naam,
         beschrijving: req.body.beschrijving,
         afdeling: req.body.afdeling,
-        prijs: req.body.prijs
+        prijs: req.body.prijs,
+        afbeelding: req.body.afbeelding
     });
     product
     .save()
