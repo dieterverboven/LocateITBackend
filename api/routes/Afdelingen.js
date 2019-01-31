@@ -9,19 +9,21 @@ const Config = require('../../config');
 router.get('/', (req, res, next)=> {
     if(req.headers.token == Config.secret){
         Afdeling.find()
-    .exec()
-    .then(docs => {
-        console.log(docs);
-        res.status(200).json(docs);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+        .exec()
+        .then(docs => {
+            console.log(docs);
+            res.status(200).json(docs);
         })
-    });
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        });
     } else {
-        res.status(401);
+        res.status(401).json({
+            'reason':'unauthorized'
+        });
     }
 });
 
