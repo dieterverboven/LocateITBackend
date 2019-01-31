@@ -5,6 +5,28 @@ const mongoose = require('mongoose');
 const Gebruiker = require('../models/Gebruiker');
 const Config = require('../../config');
 
+//get all gebruikers
+router.get('/', (req, res, next)=> {
+    if(req.headers.token == Config.secret){
+        Gebruiker.find()
+        .exec()
+        .then(docs => {
+            console.log(docs);
+            res.status(200).json(docs);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        });
+    } else {
+        res.status(401).json({
+            'reason':'unauthorized'
+        });
+    }
+});
+
 // add gebruiker
 router.post('/', (req, res, next)=> {
     if(req.headers.token == Config.secret){
