@@ -22,9 +22,9 @@ router.post('/', (req, res, next)=> {
                 const gebruiker = new Gebruiker({
                     _id: new mongoose.Types.ObjectId(),
                     naam: req.body.naam,
-                    niveau: Number,
-                    email: String,
-                    passwoord: String,
+                    niveau: req.body.niveau,
+                    email: req.body.email,
+                    passwoord: req.body.passwoord,
                 });
                 gebruiker
                 .save()
