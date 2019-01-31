@@ -3,10 +3,12 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const Afdeling = require('../models/Afdeling');
+const Config = require('../../config');
 
 //get all afdeling
 router.get('/', (req, res, next)=> {
-    Afdeling.find()
+    if(req.headers.token == Config.secret){
+        Afdeling.find()
     .exec()
     .then(docs => {
         console.log(docs);
@@ -18,6 +20,9 @@ router.get('/', (req, res, next)=> {
             error: err
         })
     });
+    } else {
+        res.status(401);
+    }
 });
 
 // add afdeling
