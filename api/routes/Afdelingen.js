@@ -29,51 +29,69 @@ router.get('/', (req, res, next)=> {
 
 // add afdeling
 router.post('/', (req, res, next)=> {
-    const afdeling = new Afdeling({
-        _id: new mongoose.Types.ObjectId(),
-        naam: req.body.naam
-    });
-    afdeling
-    .save()
-    .then(result => {
-        console.log(result);
-    })
-    .catch(err => console.log(err));
-    res.status(201).json({
-        message: 'Klaar',
-        aangemaakteAfdeling: afdeling
-    })
+    if(req.headers.token == Config.secret){
+        const afdeling = new Afdeling({
+            _id: new mongoose.Types.ObjectId(),
+            naam: req.body.naam
+        });
+        afdeling
+        .save()
+        .then(result => {
+            console.log(result);
+        })
+        .catch(err => console.log(err));
+        res.status(201).json({
+            message: 'Klaar',
+            aangemaakteAfdeling: afdeling
+        });
+    } else {
+        res.status(401).json({
+            'reason':'unauthorized'
+        });
+    }
 });
 
 // delete afdelingen
 router.delete('/', (req, res, next)=> {
-    Afdeling.remove({})
-    .exec()
-    .then(result => {
-        res.status(200).json(result);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+    if(req.headers.token == Config.secret){
+        Afdeling.remove({})
+        .exec()
+        .then(result => {
+            res.status(200).json(result);
         })
-    });
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        });
+    } else {
+        res.status(401).json({
+            'reason':'unauthorized'
+        });
+    }
 });
 
 // delete afdeling by id
 router.delete('/:afdelingId', (req, res, next)=> {
-    const id = req.params.afdelingId;
-    Afdeling.remove({_id: id})
-    .exec()
-    .then(result => {
-        res.status(200).json(result);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+    if(req.headers.token == Config.secret){
+        const id = req.params.afdelingId;
+        Afdeling.remove({_id: id})
+        .exec()
+        .then(result => {
+            res.status(200).json(result);
         })
-    });
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        });
+    } else {
+        res.status(401).json({
+            'reason':'unauthorized'
+        });
+    }
 });
 
 module.exports = router;
